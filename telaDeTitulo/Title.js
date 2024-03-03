@@ -15,10 +15,8 @@ class Title extends Phaser.Scene{
         //botao de play do jogo
         this.play = this.add.image(largura/2,altura/2,'play').setScale(0.35);
         this.play.setInteractive();
-        this.play.on('pointerdown',comercarJogo);
+        this.play.on('pointerdown',() =>{
+            this.scene.start('Mapa')});
 
     }
-}
-function comercarJogo(){
-    console.log("I love U <3")
 }

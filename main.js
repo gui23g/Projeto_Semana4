@@ -1,6 +1,8 @@
 //variaveis para altura e comprimento da tela
-var largura = 960;
-var altura = 480;
+const largura = 960;
+const altura = 480;
+//pontuacao do jogo
+var pontuacao = 0;
 
 var config = {
     //configuracoes basicas
@@ -8,6 +10,13 @@ var config = {
     width: largura,
     height: altura,
     backgroundColor: "b9eaff",
-    scene: [Title] //Adicionando as classes/cenas do jogo
+    physics: {
+      default: 'arcade',
+      arcade: {
+          gravity: { y: 300 },
+          debug: true
+      }
+  },
+    scene: [Title, Mapa, Score] //Adicionando as classes/cenas do jogo
   };
   var game = new Phaser.Game(config);

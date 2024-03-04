@@ -1,8 +1,6 @@
 //variaveis para altura e comprimento da tela
 const largura = 960;
-const altura = 480;
-//pontuacao do jogo
-var pontuacao = 0;
+const altura = 200;
 
 var config = {
     //configuracoes basicas

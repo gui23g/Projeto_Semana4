@@ -36,6 +36,9 @@ class Mapa extends Phaser.Scene {
     //adicionando o mapa do jogo
     this.add.image(0, 0, "bg").setOrigin(0, 0);
 
+    //adicionando evento que a cada 1 segundo adiciona 1 ponto na pontuacao
+    this.timedEvent = this.time.addEvent({ delay: 1000, callback: this.onEvent, callbackScope: this, repeat: 9 });
+
     //adicionando grupo de obstaculos
     this.obstaculos = this.physics.add.staticGroup();
     this.obstaculos.create(200, (altura * 3) / 4, "obstaculo");
@@ -105,17 +108,7 @@ class Mapa extends Phaser.Scene {
       this.personagem.anims.play("parado",true);
     }
 
-    //sistema de pontuacao do jogo, baseado em tempo
-    //A cada 1 segundo aumenta 1 na pontuacao
-    this.time.delayedCall(
-      1000,
-      () => {
-        this.pontuacao += 1;
-      },
-      null,
-      this
-    );
-
+    //linha de chegada
     if (this.personagem.x >= largura - 50) {
       this.scene.start("Score", { pontuacao: this.pontuacao });
       this.scene.stop("Mapa");
@@ -134,5 +127,10 @@ class Mapa extends Phaser.Scene {
 
   pulo() {
     this.personagem.setVelocityY(this.velocidadePulo);
+  }
+
+  //funcao que adiciona a pontuacao
+  onEvent(){
+    this.pontuacao+=1;
   }
 }
